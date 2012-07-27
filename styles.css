@@ -1,0 +1,9 @@
+#myDiv{
+	width: 150px;
+	height: 150px;
+	background-color:#ccc;
+	border: 1px solid #999;
+	margin: 200px auto;
+	text-align:center;
+	line-height: 7;
+}

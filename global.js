@@ -1,15 +1,48 @@
-var my_array = [];
+/*** A Better way with the module pattern ******************************************************************************#/
+* Our goals:
+*
+* 1) We define a module and scope it within a self invoking anonymous function
+* 2) We perform a global import and namespace it so we circumvent naming collisions
+*
+************************************************************************************************************************/
 
-my_array[0] = prompt('Enter a number here');
-my_array[1] = prompt('Enter a second number here');
-my_array[2] = prompt('Enter a third number here');
+var MODULE = (function($){
+	//private vars 
+	var secretText ="shhh dont tell... im a secret", 
+		myBankAccountNumber = 12345,
+		mod = {};
 
-my_array[0] = parseInt(my_array[0]);
-my_array[1] = parseInt(my_array[1]);
-my_array[2] = parseInt(my_array[2]);
+	//privateMethods
+	makeAWithdrawl = function(myBankAccountNumber){
+		console.log('Your Bank account number is: ' + myBankAccountNumber + ' and youre broke chump');
+	}
 
-var max = Math.min(my_array[0], my_array[1], my_array[2]);
- 
+	//Public methods
+	mod.getText = function(selector){
+				console.log($(selector).text().trim());	
+	}
+	mod.setText = function(selector, message){
+				console.log('setting text');
+				$(selector).text(message);	
+	}
+	mod.ripYouOff = function(myBankAccountNumber){
+		console.log('Your Bank account number is: ' + myBankAccountNumber + ' and youre broke chump');
+	}
+
+	return mod;
+})(jQuery);
+
+//And many lines later someone comes along and adds a new setText function
+function setText(selector){
+	$(selector).text('im broken now...boo');
+}	
 
 
-alert('The max number is: ' + max);
+
+
+
+//Implementation
+$(document).ready(function(){
+	setText('#myDiv');
+	MODULE.setText('#myDiv','I am some text to be set');
+});
