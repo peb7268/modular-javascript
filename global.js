@@ -2,8 +2,8 @@
 * Our goals:
 *
 * 1) We define a module and scope it within a self invoking anonymous function
-* 2) We perform a global import and namespace it so we circumvent naming collisions
-*
+* 2) We perform a global import (by passing jQuery in as a param) and namespace it so we circumvent naming collisions
+* 3) We then export the module with the return keyword
 ************************************************************************************************************************/
 
 var MODULE = (function($){
@@ -36,9 +36,6 @@ var MODULE = (function($){
 function setText(selector){
 	$(selector).text('im broken now...boo');
 }	
-
-
-
 
 
 //Implementation
